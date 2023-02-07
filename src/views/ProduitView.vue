@@ -9,47 +9,61 @@
           data.infoPage.totalPages
         }}
       </caption>
-      <tr>
-        <th>Nom</th>
-        <th>Prix</th>
-        <th>Stock</th>
-        <th>Commandés</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Stock</th>
+          <th>Commandés</th>
+        </tr>
+      </thead>
       <!-- Si le tableau des produits est vide -->
-      <tr v-if="!data.listeProduits">
-        <td colspan="4">Veuillez patienter, chargement des produits...</td>
-      </tr>
-      <!-- Si le tableau des produits n'est pas vide -->
-      <tr v-for="produit in data.listeProduits" :key="produit.reference">
-        <td>{{ produit.nom }}</td>
-        <td>{{ produit.prixUnitaire }}</td>
-        <td>{{ produit.unitesEnStock }}</td>
-        <td>{{ produit.unitesCommandees }}</td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td class="tableau">
-          <button @click="chargeProduits(data.liens.first.href)">
-            Première page
-          </button>
-        </td>
-        <td class="tableau">
-          <button @click="chargeProduits(data.liens.prev.href)">
-            Page pécédente
-          </button>
-        </td>
-        <td class="tableau">
-          <button @click="chargeProduits(data.liens.next.href)">
-            Page suivante
-          </button>
-        </td>
-        <td class="tableau">
-          <button @click="chargeProduits(data.liens.last.href)">
-            Dernière page
-          </button>
-        </td>
-      </tr>
+      <tbody>
+        <tr v-if="!data.listeProduits">
+          <td colspan="4">Veuillez patienter, chargement des produits...</td>
+        </tr>
+        <!-- Si le tableau des produits n'est pas vide -->
+        <tr v-for="produit in data.listeProduits" :key="produit.reference">
+          <td>{{ produit.nom }}</td>
+          <td>{{ produit.prixUnitaire }}</td>
+          <td>{{ produit.unitesEnStock }}</td>
+          <td>{{ produit.unitesCommandees }}</td>
+        </tr>
+        <tr>
+          <td class="tableau">
+            <button @click="chargeProduits(data.liens.first.href)">
+              <img
+                src="../assets/fleche_premierePage.png"
+                alt="Première page"
+              />
+            </button>
+          </td>
+          <td class="tableau">
+            <button @click="chargeProduits(data.liens.prev.href)">
+              <img
+                src="../assets/fleche_pagePrecedente.png"
+                alt="Page pécédente"
+              />
+            </button>
+          </td>
+          <td class="tableau">
+            <button @click="chargeProduits(data.liens.next.href)">
+              <img
+                src="../assets/flèche_pageSuivante.png"
+                alt="Page suivante"
+              />
+            </button>
+          </td>
+          <td class="tableau">
+            <button @click="chargeProduits(data.liens.last.href)">
+              <img
+                src="../assets/fleche_dernierePage.png"
+                alt="Dernière page"
+              />
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </main>
 </template>
@@ -91,10 +105,15 @@ th {
   border: 1px solid #ddd;
   padding: 8px;
   width: 100%;
+  text-align: justify;
 }
 .tableau {
   width: 25%;
-  align-items: center;
+  text-align: center;
+}
+
+button {
+  background-color: black;
 }
 
 th {
